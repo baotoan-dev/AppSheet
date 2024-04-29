@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Me form</h1>
+    <h2>
+      Hello! I am a web developer and I am looking for new projects. If you are interested in working with me, please fill out the form below.
+    </h2>
+
+    <div>
+        <form class="form" name="google-sheet">
+            <input type="text" name="Name" placeholder="Name">
+            <input type="email" name="Email" placeholder="Email">
+            <input type="text" name="Message" placeholder="Message">
+            <input type="submit" value="Submit">
+        </form>
+      </div>
+</body>
+<script>
+    // https://script.google.com/macros/s/AKfycbwcRZvYvsFVDEAA_fDqGnQn_obrpNVTd612EIyDE702T5AkPQ7KDcWY-TDuQy9dgwvC/exec
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwcRZvYvsFVDEAA_fDqGnQn_obrpNVTd612EIyDE702T5AkPQ7KDcWY-TDuQy9dgwvC/exec'
+    const form = document.forms['google-sheet']
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for contacting me. I will get back to you soon."))
+            .catch(error => console.error('Error!', error.message))
+    })
+
+</script>
+</html>
